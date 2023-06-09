@@ -12,7 +12,7 @@
 
 # Table of contents
 
---- 
+---
 
 - [Table of contents](#table-of-contents)
 - [Project Description](#project-description)
@@ -30,27 +30,37 @@
 
 # Project Description
 
---- 
+**026_node_jwt_oauth2** is a practice to build a **Nodejs y mysql, app completa (login, registro)- #1** Nodejs following Youtube DOMINICODE's tutorial [Login Angular 10 - API Node & MySql (Nodejs y mysql, app completa (login, registro)- #1)]
+(https://www.youtube.com/watch?v=8si7IFlj0l4&list=PL_9MDdjVuFjHtNjQV2Kvs1xJIazMCH3Pi)
+and the other help that you can find into **Reference** section.
+
+# Technology stack
+
+Se hace con un stack tecnológico un poco mezclado
+
+- Se requerirá tener instalado en el ordenador **postman** a fin de poder hacer las pruebas de la API a través de esta herramienta.
+- Se utilizara un cliente de base de datos relacional, pera este caso será MySql a través de **Sequel Pro**
+- Se utilizará un servidor realizado en **Nodejs**, junto a nodejs usaremos **express** y no lo haremos con javascript plano sino que usaremos **TypeScript**.
+- Para realizar la conexión hacia la base de datos usaremos **TypeORM**
+- La base de datos a utilizar será **MySql**
+- Para la gestión del usuario como tal se usará **JWT** el mismo que manejará dos roles (admin y otro normal (lo llamaremos reader))
 
 [⏪(Back to top)](#table-of-contents)
 &nbsp;
 
 # Technologies used
 
---- 
+---
 
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
-![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
-![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
-![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
 
 [⏪(Back to top)](#table-of-contents)
 
 # References
 
---- 
+---
 
 - Shields.io
 
@@ -64,8 +74,17 @@
 
 # Steps
 
---- 
+- Update nvm version
 
-  
+  - D:\dev_20220602\00_Documentacion\T_Node_001.txt
+
+- Build project scafolding wiht **typeorm** este creará una estructura compleata para nuestro proyecto, para lo cual creará un directorio con el nombre que le indiquemos, además del cliente de base de datos que usaremos y el servidor.
+
+  ```bash
+    npx typeorm init --name login_roles --database mysql --express
+  cd login_roles
+  ```
+
+  This command is going to install typeorm
 
 [⏪(Back to top)](#table-of-contents)
