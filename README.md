@@ -19,6 +19,7 @@
 - [Technologies used](#technologies-used)
 - [References](#references)
 - [Steps](#steps)
+- [Errors](#errors)
 
   - <details> <summary>List of Steps</summary>
 
@@ -39,7 +40,7 @@ and the other help that you can find into **Reference** section.
 Se hace con un stack tecnológico un poco mezclado
 
 - Se requerirá tener instalado en el ordenador **postman** a fin de poder hacer las pruebas de la API a través de esta herramienta.
-- Se utilizara un cliente de base de datos relacional, pera este caso será MySql a través de **Sequel Pro**
+- Se utilizara un cliente de base de datos relacional, pera este caso será MySql a través de **Sequel Pro**, se usará [PlanetScale](https://planetscale.com/)
 - Se utilizará un servidor realizado en **Nodejs**, junto a nodejs usaremos **express** y no lo haremos con javascript plano sino que usaremos **TypeScript**.
 - Para realizar la conexión hacia la base de datos usaremos **TypeORM**
 - La base de datos a utilizar será **MySql**
@@ -69,6 +70,10 @@ Se hace con un stack tecnológico un poco mezclado
   - [Github Ileriayo markdown-badges](https://github.com/Ileriayo/markdown-badges)
 
   - [Github Ileriayo markdown-badges WebSite](https://ileriayo.github.io/markdown-badges/)
+
+- Database
+  - [PlanetScale](https://planetscale.com/)
+  - [PlanetScale - Hosting de MySQL Gratuito y Fácil](https://www.youtube.com/watch?v=XEY-7tKkPik)
 
 [⏪(Back to top)](#table-of-contents)
 
@@ -156,4 +161,110 @@ Se hace con un stack tecnológico un poco mezclado
     - /express:
     - /node:
 
+- Modify tsconfig.json file
+
+  - change "outDir": from "./build" to "./dist",
+  - Add "rootDir": "./src",
+
+- Modify package.json file (11.00)
+
+  ```bash
+  	"scripts": {
+  	  ...
+  	  "tsc": "tsc",
+  	  "dev": "set debug=* && ts-node-dev --respawn --transpile-only ./	src/index.ts"
+  	}
+  ```
+
+- DataBase Configuration (11.55)
+
+  - Add file "./src/data-key.json
+
+        ```bash
+        {
+          "database": {
+            "username": "xxxxx",
+            "password": "yyyyy",
+            "database": "dbname"
+          }
+        }
+        ```
+
+  - Add data-key.json to .gitignore file.
+
+  - Modify file "data-source.ts"
+
+    ```bash
+    	...
+    	const dataKey:any = require("../data-key.json");
+
+    		export const AppDataSource = new DataSource({
+    		...
+    			username: dataKey.database.username,
+    			password: dataKey.database.password,
+    			database: "login_node",
+    		...
+          	subscribers: [],
+        ssl: {
+          rejectUnauthorized: false,
+        },
+    		})
+    ```
+
+    Note: ssl... is used to avoid error about ssl conection.
+
+  - PlanetScale
+
+    - Create a dataBase in [PlanetScale](https://planetscale.com/)
+
+      - Press button "Create your first database"
+      - Name: login_node
+      - Region: us-east-1(N.Virginia)
+      - copy username and password.
+      - Go to Settings tabs
+        - Select Passwords menu
+        - Press button "New Password"
+          - Name: write a user name ejam: admin
+          - Branch: main
+          - Role: Admin
+        - COPY PASSWORD
+
+    - Go to Console tab
+    - show databases;
+    - use dbname;
+    - show tables;
+    -
+
+  - Test
+  - run
+
+    ```bash
+        npm run dev
+    ```
+
+    [⏪(Back to top)](#table-of-contents)
+
+# Errors:
+
+- Module '"xxxx/login_roles/node_modules/dotenv/lib/main"' has no default export.ts(1192)
+- File 'xxxx/login_roles/node_modules/@types/express/index.d.ts' is not a module.ts(2306)
+- DATABASE:
+
+  - trying to connect to DB:
+    - errno: 1105,
+      sqlMessage: 'unknown error: Code: UNAVAILABLE\n' + 'server does not allow insecure connections, client must use SSL/TLS\n',
+    - Solution: - Add into file "data-source.ts"
+
+  ```bash
+  	...
+  	subscribers: [],
+    ssl: {
+      rejectUnauthorized: false,
+    },
+  ```
+
 [⏪(Back to top)](#table-of-contents)
+
+```
+
+```
