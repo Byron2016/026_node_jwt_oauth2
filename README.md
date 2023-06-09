@@ -87,4 +87,73 @@ Se hace con un stack tecnológico un poco mezclado
 
   This command is going to install typeorm
 
+  Files created:
+
+  - tsconfig.json: configuración de typeScript
+  - package.json: con dependencias que coloca inicialmente
+    - devDependencies
+      "ts-node": "10.7.0",
+      "@types/node": "^16.11.10",
+      "typescript": "4.5.2"
+    - dependencies":
+      "typeorm": "0.3.16",
+      "reflect-metadata": "^0.1.13",
+      "mysql": "^2.14.1",
+      "express": "^4.17.2",
+      "body-parser": "^1.19.1"
+  - Directorio src:
+
+- Update dependecies
+
+  - Delete from package.json
+
+    ```bash
+      rm -rf node_modules
+    ```
+
+    - ts-node, @types/node, typescript
+    - mysql, express, body-parser
+
+  - Delete node_modules dir.
+  - run
+
+    ```bash
+      npm i -D ts-node @types/node typescript
+    ```
+
+    ```bash
+      npm i mysql express
+    ```
+
+  Note: body-parser allow us to communicate with client, this can be doing directly with express, for that reason we will not to install it.
+
+- Add new dependencies
+
+  ```bash
+    npm i cors jsonwebtoken bcryptjs class-validator helmet
+  ```
+
+  Note:
+
+  - cors: Allow us to accept all request from a front end.
+  - jsonwebtoken: Allow us to generate a token for our user
+  - bcryptjs: Allow us to encrypt user´s password
+  - class-validator: Allow us to validate information of our database fields.
+  - helmet:
+
+  ```bash
+    npm i -D ts-node-dev typescript @types/bcryptjs @types/cors @types/jsonwebtoken @types/express @types/node
+  ```
+
+  Note:
+
+  - ts-node-dev: Allow us to reload our server
+  - typescript:
+  - Some @types to work with typescript.
+    - /bcryptjs:
+    - /cors:
+    - /jsonwebtoken:
+    - /express:
+    - /node:
+
 [⏪(Back to top)](#table-of-contents)
